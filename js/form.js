@@ -5,6 +5,7 @@ import { postData } from './api.js';
 import { SubmitButtonText } from './constant.js';
 import { onSuccess } from './popups.js';
 import { onError } from './popups.js';
+import { isEscape } from './util.js';
 
 const form = document.querySelector('.img-upload__form');
 const modal = document.querySelector('.img-upload__overlay');
@@ -20,7 +21,7 @@ const isTextfieldFocused = () =>
   document.activeElement === commentField;
 
 const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape' && !isTextfieldFocused()) {
+  if (isEscape(evt.key) && !isTextfieldFocused()) {
     evt.preventDefault();
     hideModal();
   }

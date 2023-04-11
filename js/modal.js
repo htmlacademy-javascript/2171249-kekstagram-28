@@ -1,3 +1,5 @@
+import { isEscape } from './util.js';
+
 const modal = document.querySelector('.big-picture');
 const buttonClose = document.querySelector('.big-picture__cancel');
 
@@ -63,7 +65,7 @@ buttonClose.addEventListener('click', (evt) => {
 });
 
 const onEscapeKey = (evt) => {
-  if (evt.keyCode === 27) {
+  if (isEscape(evt.key)) {
     evt.preventDefault();
     hideModal();
     document.removeEventListener('keydown', onEscapeKey);
@@ -77,7 +79,6 @@ socialCommentsLoader.addEventListener('click', (evt) => {
 });
 
 const openModal = (photo) => {
-
   commentsArray.length = 0;
   commentsArray.push(...photo.comments.slice());
   renderedComments = 0;

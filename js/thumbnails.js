@@ -4,25 +4,29 @@ const template = document.querySelector('#picture').content.querySelector('.pict
 const container = document.querySelector('.pictures');
 const fragment = document.createDocumentFragment();
 
+const data = [];
+
 const renderThumbnails = (photos) => {
+  data.length = 0;
+  data.push(...photos.slice());
   photos.forEach((item) => {
     const thumbnailElement = template.cloneNode(true);
     thumbnailElement.querySelector('.picture__img').src = item.url;
     thumbnailElement.querySelector('.picture__comments').textContent = item.comments.length;
     thumbnailElement.querySelector('.picture__likes').textContent = item.likes;
     thumbnailElement.dataset.id = item.id;
-
     fragment.append(thumbnailElement);
   });
   container.append(fragment);
-  container.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('picture__img')) {
-      const id = evt.target.closest('a').dataset.id * 1;
-      const photo = photos.find((item) => item.id === id);
-      openModal(photo);
-    }
-  });
 };
+
+container.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('picture__img')) {
+    const id = evt.target.closest('a').dataset.id * 1;
+    const photo = data.find((item) => item.id === id);
+    openModal(photo);
+  }
+});
 
 
 export { renderThumbnails };
