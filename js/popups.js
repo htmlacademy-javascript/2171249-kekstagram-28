@@ -1,4 +1,5 @@
 import { onDocumentKeydown } from './form.js';
+import { isEscape } from './util.js';
 
 const templateSuccess = document.querySelector('#success').content.querySelector('.success');
 const templateError = document.querySelector('#error').content.querySelector('.error');
@@ -26,13 +27,13 @@ function onClickErrorButton() {
 
 
 function onEscapeSuccess(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscape(evt.key)) {
     hideSuccess();
   }
 }
 
 function onEscapeError(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscape(evt.key)) {
     hideError();
   }
 }

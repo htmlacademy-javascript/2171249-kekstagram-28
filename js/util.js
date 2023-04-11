@@ -29,4 +29,6 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export { showAlert, debounce };
+const isEscape = (key) => key === 'Escape';
+
+export { showAlert, debounce, isEscape };
